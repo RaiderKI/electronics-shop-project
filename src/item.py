@@ -1,6 +1,7 @@
 import csv
 
 
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -72,3 +73,10 @@ class Item:
 
     def __str__(self):
         return self.__name
+
+    def __add__(self, other):
+        from src.phone import Phone
+        if isinstance(other, Phone):
+            return self.quantity + other.quantity
+        else:
+            return None
