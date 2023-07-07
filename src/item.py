@@ -57,8 +57,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         Item.all.clear()
-        with open('C:/Users/79026/PycharmProjects/electronics-shop-project/src/items.csv', 'r',
-                  encoding='windows-1251') as file:
+        with open('../src/items.csv', 'r',encoding='windows-1251') as file:
             file_dict = csv.DictReader(file)
             for row in file_dict:
                 Item(name=row['name'], price=row['price'], quantity=row['quantity'])
