@@ -1,7 +1,6 @@
 import csv
 
 
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -13,7 +12,7 @@ class Item:
         """
         Создание экземпляра класса item
         """
-        self.__name = name
+        self._name = name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
@@ -40,7 +39,7 @@ class Item:
         """
         Getter для получения значения атрибута name.
         """
-        return self.__name
+        return self._name
 
     @name.setter
     def name(self, value: str) -> None:
@@ -50,14 +49,14 @@ class Item:
         :param value: Новое название товара.
         """
         if len(value) > 10:
-            self.__name = value[:10]
+            self._name = value[:10]
         else:
-            self.__name = value
+            self._name = value
 
     @classmethod
     def instantiate_from_csv(cls):
         Item.all.clear()
-        with open('../src/items.csv', 'r',encoding='windows-1251') as file:
+        with open('../src/items.csv', 'r', encoding='windows-1251') as file:
             file_dict = csv.DictReader(file)
             for row in file_dict:
                 Item(name=row['name'], price=row['price'], quantity=row['quantity'])
@@ -68,10 +67,10 @@ class Item:
         return result
 
     def __repr__(self):
-        return f"Item('{self.__name}', {self.price}, {self.quantity})"
+        return f"Item('{self._name}', {self.price}, {self.quantity})"
 
     def __str__(self):
-        return self.__name
+        return self._name
 
     def __add__(self, other):
         from src.phone import Phone
